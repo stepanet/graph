@@ -17,7 +17,7 @@ public class GraphName : NSObject {
     //movePoint, linePoint - координаты отрисовки графика
     
 
-    @objc dynamic public class func drawGraph(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 200, height: 200), resizing: ResizingBehavior = .aspectFit, colorGraph: UIColor = .darkGray, colorGraphLine: UIColor = .darkGray /*, movePoint: CGPoint = CGPoint(x: 37.5, y: 36.5), linePoint:CGPoint = CGPoint(x: 37.5, y: 63.5)*/) {
+    @objc dynamic public class func drawGraph(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 200, height: 200), resizing: ResizingBehavior = .aspectFit, colorGraph: UIColor = .darkGray, colorGraphLine: UIColor = .darkGray, pointYArray:[Double] = [0]) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         
@@ -91,7 +91,7 @@ public class GraphName : NSObject {
         var pointX: Double = 37.0
         let move: Double = 20
         
-        let pointYArray: [Double] = [27,39,20,55,20,10,60,70,10,30]
+        let pointYArray: [Double] = pointYArray//[27,39,50,55,40,50,60,70,50,20]
         
         for pointY in pointYArray {
 
@@ -104,7 +104,7 @@ public class GraphName : NSObject {
         
         //context.setShadow(offset: shadow.shadowOffset, blur: shadow.shadowBlurRadius, color: (shadow.shadowColor as! UIColor).cgColor)
         colorGraph.setStroke()
-        bezierPath.lineWidth = 1
+        bezierPath.lineWidth = 2.5
         bezierPath.lineCapStyle = .round
         bezierPath.lineJoinStyle = .round
         context.saveGState()

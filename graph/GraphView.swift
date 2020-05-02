@@ -13,11 +13,12 @@ class GraphView: UIView {
     
     var colorGraph: UIColor = .black
     var colorGraphLine: UIColor = .black
+    var pointYArray: [Double] = []
     
     
     override func draw(_ rect: CGRect) {
 
-        GraphName.drawGraph(resizing: .aspectFill, colorGraph: colorGraph, colorGraphLine: colorGraphLine)
+        GraphName.drawGraph(resizing: .aspectFill, colorGraph: colorGraph, colorGraphLine: colorGraphLine, pointYArray: pointYArray)
     }
     
 }

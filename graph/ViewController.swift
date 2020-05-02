@@ -12,37 +12,43 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var graphView: GraphView!
     var timerDraw: Timer?
+    var arrayPointY:[Double] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupView()
-        //drawGraphTime()
-        draw()
-
+        drawGraphTime()
+        //draw()
     }
     
     
     func drawGraphTime() {
-
-        timerDraw = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(draw), userInfo: nil, repeats: false)
+        timerDraw = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(addArrayValue), userInfo: nil, repeats: true)
     }
     
     
+    @objc func addArrayValue() {
+        var addPoint:Double = 0
+        addPoint = Double.random(in: 20...150)
+        arrayPointY.append(addPoint)
+        drawGraph(colorGraph: .red, colorGraphLine: .black, pointYArray: arrayPointY)
+    }
+    
+    
+    
+    //просто нарисуем график
     @objc func draw() {
-
-        drawGraph(colorGraph: .red, colorGraphLine: .black)
- 
+        drawGraph(colorGraph: .red, colorGraphLine: .black, pointYArray: [150,20,30,50,60,70,80,90])
     }
     
     
-    
-    func drawGraph(colorGraph:UIColor, colorGraphLine:UIColor)  {
-
+    func drawGraph(colorGraph:UIColor, colorGraphLine:UIColor, pointYArray:Array<Double>) {
         let arrayView = [graphView]
         for each in arrayView {
             each!.colorGraph = colorGraph
             each!.colorGraphLine = colorGraphLine
+            each!.pointYArray = pointYArray
             each!.setNeedsDisplay()
         }
     }
