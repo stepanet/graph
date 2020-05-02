@@ -17,7 +17,7 @@ public class GraphName : NSObject {
     //movePoint, linePoint - координаты отрисовки графика
     
 
-    @objc dynamic public class func drawGraph(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 200, height: 200), resizing: ResizingBehavior = .aspectFit, colorGraph: UIColor = .darkGray, colorGraphLine: UIColor = .black, movePoint: CGPoint = CGPoint(x: 37.5, y: 36.5), linePoint:CGPoint = CGPoint(x: 37.5, y: 63.5)) {
+    @objc dynamic public class func drawGraph(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 200, height: 200), resizing: ResizingBehavior = .aspectFit, colorGraph: UIColor = .darkGray, colorGraphLine: UIColor = .darkGray, movePoint: CGPoint = CGPoint(x: 37.5, y: 36.5), linePoint:CGPoint = CGPoint(x: 37.5, y: 63.5)) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         
@@ -107,13 +107,12 @@ public class GraphName : NSObject {
         let bezierPath = UIBezierPath()
         bezierPath.move(to: movePoint)//CGPoint(x: 37.5, y: 36.5))
         bezierPath.addLine(to: linePoint)//CGPoint(x: 37.5, y: 63.5))
-        UIColor.black.setStroke()
-        bezierPath.lineWidth = 1
+        colorGraph.setStroke()
+        bezierPath.lineWidth = 3
         bezierPath.lineCapStyle = .round
         bezierPath.lineJoinStyle = .round
         bezierPath.stroke()
 
-        
         context.restoreGState()
 
     }

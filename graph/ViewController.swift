@@ -16,18 +16,21 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupView()
-        //drawGraph(colorGraph: .blue)
+        drawGraph(colorGraph: .green, colorGraphLine: .red, movePoint: CGPoint(x: 37.5, y: 30.0), linePoint: CGPoint(x: 37.5, y: 50.0))
     }
     
     
     
     
     
-    func drawGraph(colorGraph:UIColor)  {
+    func drawGraph(colorGraph:UIColor, colorGraphLine:UIColor, movePoint: CGPoint, linePoint: CGPoint)  {
     
         let arrayView = [graphView]
         for each in arrayView {
             each!.colorGraph = colorGraph
+            each!.colorGraphLine = colorGraphLine
+            each!.linePoint = linePoint
+            each!.movePoint = movePoint
             each!.setNeedsDisplay()
         }
     }
