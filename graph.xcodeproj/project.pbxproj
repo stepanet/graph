@@ -13,7 +13,7 @@
 		3B4B33E1245D46FE007F3B10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4B33DF245D46FE007F3B10 /* Main.storyboard */; };
 		3B4B33E3245D4705007F3B10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B4B33E2245D4705007F3B10 /* Assets.xcassets */; };
 		3B4B33E6245D4705007F3B10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4B33E4245D4705007F3B10 /* LaunchScreen.storyboard */; };
-		3B4B33EE245D4740007F3B10 /* GraphStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B33ED245D4740007F3B10 /* GraphStyle.swift */; };
+		3B4B33EE245D4740007F3B10 /* GraphDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B33ED245D4740007F3B10 /* GraphDraw.swift */; };
 		3B4B33F0245D47BD007F3B10 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4B33EF245D47BD007F3B10 /* GraphView.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +26,7 @@
 		3B4B33E2245D4705007F3B10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B4B33E5245D4705007F3B10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B4B33E7245D4705007F3B10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3B4B33ED245D4740007F3B10 /* GraphStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphStyle.swift; sourceTree = "<group>"; };
+		3B4B33ED245D4740007F3B10 /* GraphDraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphDraw.swift; sourceTree = "<group>"; };
 		3B4B33EF245D47BD007F3B10 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,7 +63,7 @@
 				3B4B33D9245D46FE007F3B10 /* AppDelegate.swift */,
 				3B4B33DB245D46FE007F3B10 /* SceneDelegate.swift */,
 				3B4B33DD245D46FE007F3B10 /* ViewController.swift */,
-				3B4B33ED245D4740007F3B10 /* GraphStyle.swift */,
+				3B4B33ED245D4740007F3B10 /* GraphDraw.swift */,
 				3B4B33EF245D47BD007F3B10 /* GraphView.swift */,
 				3B4B33DF245D46FE007F3B10 /* Main.storyboard */,
 				3B4B33E2245D4705007F3B10 /* Assets.xcassets */,
@@ -147,7 +147,7 @@
 				3B4B33F0245D47BD007F3B10 /* GraphView.swift in Sources */,
 				3B4B33DE245D46FE007F3B10 /* ViewController.swift in Sources */,
 				3B4B33DA245D46FE007F3B10 /* AppDelegate.swift in Sources */,
-				3B4B33EE245D4740007F3B10 /* GraphStyle.swift in Sources */,
+				3B4B33EE245D4740007F3B10 /* GraphDraw.swift in Sources */,
 				3B4B33DC245D46FE007F3B10 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

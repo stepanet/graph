@@ -11,8 +11,12 @@ import UIKit
 public class GraphName : NSObject {
 
     //// Drawing Methods
+    
+    //colorGraph - цвет график
+    //colorGraphLine - цвет линий графика
+    
 
-    @objc dynamic public class func drawGraph(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 200, height: 200), resizing: ResizingBehavior = .aspectFit) {
+    @objc dynamic public class func drawGraph(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 200, height: 200), resizing: ResizingBehavior = .aspectFit, colorGraph: UIColor = .darkGray, colorGraphLine: UIColor = .black) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         
@@ -28,8 +32,8 @@ public class GraphName : NSObject {
         let yPath = UIBezierPath()
         yPath.move(to: CGPoint(x: 18.69, y: 22.5))
         yPath.addLine(to: CGPoint(x: 18.69, y: 187.5))
-        UIColor.lightGray.setStroke()
-        yPath.lineWidth = 1
+        colorGraphLine.setStroke()
+        yPath.lineWidth = 2
         yPath.lineCapStyle = .round
         yPath.stroke()
 
@@ -38,8 +42,8 @@ public class GraphName : NSObject {
         let xPath = UIBezierPath()
         xPath.move(to: CGPoint(x: 7.5, y: 175.85))
         xPath.addLine(to: CGPoint(x: 180.5, y: 175.85))
-        UIColor.lightGray.setStroke()
-        xPath.lineWidth = 1
+        colorGraphLine.setStroke()
+        xPath.lineWidth = 2
         xPath.lineCapStyle = .round
         xPath.stroke()
 
@@ -48,8 +52,8 @@ public class GraphName : NSObject {
         let yCapPath = UIBezierPath()
         yCapPath.move(to: CGPoint(x: 15.64, y: 29.29))
         yCapPath.addCurve(to: CGPoint(x: 21.75, y: 29.29), controlPoint1: CGPoint(x: 18.69, y: 14.01), controlPoint2: CGPoint(x: 21.75, y: 29.29))
-        UIColor.lightGray.setStroke()
-        yCapPath.lineWidth = 1
+        colorGraphLine.setStroke()
+        yCapPath.lineWidth = 2
         yCapPath.lineCapStyle = .round
         yCapPath.lineJoinStyle = .round
         yCapPath.stroke()
@@ -63,8 +67,8 @@ public class GraphName : NSObject {
         let xCapPath = UIBezierPath()
         xCapPath.move(to: CGPoint(x: 0, y: 7.12))
         xCapPath.addCurve(to: CGPoint(x: 5.82, y: 7.12), controlPoint1: CGPoint(x: 2.91, y: -8.9), controlPoint2: CGPoint(x: 5.82, y: 7.12))
-        UIColor.lightGray.setStroke()
-        xCapPath.lineWidth = 1
+        colorGraphLine.setStroke()
+        xCapPath.lineWidth = 2
         xCapPath.lineCapStyle = .round
         xCapPath.lineJoinStyle = .round
         xCapPath.stroke()
@@ -90,8 +94,8 @@ public class GraphName : NSObject {
         bezier3Path.addCurve(to: CGPoint(x: 148.5, y: 127.5), controlPoint1: CGPoint(x: 141.5, y: 74.5), controlPoint2: CGPoint(x: 142.5, y: 88.5))
         bezier3Path.addCurve(to: CGPoint(x: 165.5, y: 166.5), controlPoint1: CGPoint(x: 152.34, y: 152.43), controlPoint2: CGPoint(x: 158.41, y: 161.18))
         bezier3Path.addCurve(to: CGPoint(x: 179.5, y: 131.5), controlPoint1: CGPoint(x: 169.5, y: 169.5), controlPoint2: CGPoint(x: 171.93, y: 152.42))
-        UIColor.black.setStroke()
-        bezier3Path.lineWidth = 2
+        colorGraph.setStroke()
+        bezier3Path.lineWidth = 3
         bezier3Path.lineCapStyle = .round
         bezier3Path.stroke()
         
