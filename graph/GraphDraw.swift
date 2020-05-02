@@ -17,7 +17,7 @@ public class GraphName : NSObject {
     //movePoint, linePoint - координаты отрисовки графика
     
 
-    @objc dynamic public class func drawGraph(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 200, height: 200), resizing: ResizingBehavior = .aspectFit, colorGraph: UIColor = .darkGray, colorGraphLine: UIColor = .darkGray, movePoint: CGPoint = CGPoint(x: 37.5, y: 36.5), linePoint:CGPoint = CGPoint(x: 37.5, y: 63.5)) {
+    @objc dynamic public class func drawGraph(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 200, height: 200), resizing: ResizingBehavior = .aspectFit, colorGraph: UIColor = .darkGray, colorGraphLine: UIColor = .darkGray /*, movePoint: CGPoint = CGPoint(x: 37.5, y: 36.5), linePoint:CGPoint = CGPoint(x: 37.5, y: 63.5)*/) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         
@@ -76,43 +76,40 @@ public class GraphName : NSObject {
 
         context.restoreGState()
 
+        
+        //// Shadow Declarations
+        let shadow = NSShadow()
+        shadow.shadowColor = UIColor.black.withAlphaComponent(0.56)
+        shadow.shadowOffset = CGSize(width: 2, height: 4)
+        shadow.shadowBlurRadius = 2
 
-
-
-        //// Bezier 3 Drawing
-        //Рисуем плавный график
-//          let bezier3Path = UIBezierPath()
-//        bezier3Path.move(to: CGPoint(x: 20.5, y: 174.5))
-//        bezier3Path.addCurve(to: CGPoint(x: 41.5, y: 65.5), controlPoint1: CGPoint(x: 20.5, y: 174.5), controlPoint2: CGPoint(x: 30.5, y: 22.5))
-//        bezier3Path.addCurve(to: CGPoint(x: 55.5, y: 120.5), controlPoint1: CGPoint(x: 52.5, y: 108.5), controlPoint2: CGPoint(x: 55.5, y: 120.5))
-//        bezier3Path.addCurve(to: CGPoint(x: 68.5, y: 151.5), controlPoint1: CGPoint(x: 55.5, y: 120.5), controlPoint2: CGPoint(x: 63.5, y: 154.5))
-//        bezier3Path.move(to: CGPoint(x: 68.5, y: 151.5))
-//        bezier3Path.addCurve(to: CGPoint(x: 81.5, y: 127.5), controlPoint1: CGPoint(x: 68.5, y: 151.5), controlPoint2: CGPoint(x: 77.5, y: 147.5))
-//        bezier3Path.addCurve(to: CGPoint(x: 93.5, y: 80.5), controlPoint1: CGPoint(x: 85.5, y: 107.5), controlPoint2: CGPoint(x: 85.5, y: 62.5))
-//        bezier3Path.addCurve(to: CGPoint(x: 108.5, y: 131.5), controlPoint1: CGPoint(x: 101.5, y: 98.5), controlPoint2: CGPoint(x: 100.5, y: 108.5))
-//        bezier3Path.addCurve(to: CGPoint(x: 119.5, y: 154.5), controlPoint1: CGPoint(x: 116.5, y: 154.5), controlPoint2: CGPoint(x: 112.5, y: 157.5))
-//        bezier3Path.addCurve(to: CGPoint(x: 131.5, y: 148.5), controlPoint1: CGPoint(x: 126.5, y: 151.5), controlPoint2: CGPoint(x: 131.5, y: 204.5))
-//        bezier3Path.addCurve(to: CGPoint(x: 136.5, y: 66.5), controlPoint1: CGPoint(x: 131.5, y: 92.5), controlPoint2: CGPoint(x: 131.5, y: 58.5))
-//        bezier3Path.addCurve(to: CGPoint(x: 148.5, y: 127.5), controlPoint1: CGPoint(x: 141.5, y: 74.5), controlPoint2: CGPoint(x: 142.5, y: 88.5))
-//        bezier3Path.addCurve(to: CGPoint(x: 165.5, y: 166.5), controlPoint1: CGPoint(x: 152.34, y: 152.43), controlPoint2: CGPoint(x: 158.41, y: 161.18))
-//        bezier3Path.addCurve(to: CGPoint(x: 179.5, y: 131.5), controlPoint1: CGPoint(x: 169.5, y: 169.5), controlPoint2: CGPoint(x: 171.93, y: 152.42))
-//        colorGraph.setStroke()
-//        bezier3Path.lineWidth = 3
-//        bezier3Path.lineCapStyle = .round
-//        bezier3Path.stroke()
         
         //// Bezier Drawing
-        //х - точка старта отрисовки прямой линии вниз
-        //movePoint, linePoint
+        print("draw bezier")
         let bezierPath = UIBezierPath()
-        bezierPath.move(to: movePoint)//CGPoint(x: 37.5, y: 36.5))
-        bezierPath.addLine(to: linePoint)//CGPoint(x: 37.5, y: 63.5))
+        
+        var pointX: Double = 37.0
+        let move: Double = 20
+        
+        let pointYArray: [Double] = [27,39,20,55,20,10,60,70,10,30]
+        
+        for pointY in pointYArray {
+
+            print(pointX, pointY)
+            bezierPath.move(to: CGPoint(x: pointX, y: pointY))
+            bezierPath.addLine(to: CGPoint(x: pointX, y: pointY + move))
+            pointX = pointX + 10
+
+        }
+        
+        //context.setShadow(offset: shadow.shadowOffset, blur: shadow.shadowBlurRadius, color: (shadow.shadowColor as! UIColor).cgColor)
         colorGraph.setStroke()
-        bezierPath.lineWidth = 3
+        bezierPath.lineWidth = 1
         bezierPath.lineCapStyle = .round
         bezierPath.lineJoinStyle = .round
+        context.saveGState()
+        //context.setLineDash(phase: 0, lengths: [18, 17])
         bezierPath.stroke()
-
         context.restoreGState()
 
     }
