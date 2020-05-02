@@ -12,13 +12,13 @@ import UIKit
 class GraphView: UIView {
     
     
-    var colorGraph: UIColor = .black
+    var colorGraph: UIColor?
     
     override func draw(_ rect: CGRect) {
         
         //GraphName.drawGraph(var: variable)
         //GraphName.drawGraph()
-        GraphName.drawGraph(resizing: .center, colorGraph: colorGraph)
+        GraphName.drawGraph(resizing: .center, colorGraph: colorGraph ?? .lightGray)
     }
     
 }

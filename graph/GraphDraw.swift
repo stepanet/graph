@@ -14,9 +14,10 @@ public class GraphName : NSObject {
     
     //colorGraph - цвет график
     //colorGraphLine - цвет линий графика
+    //movePoint, linePoint - координаты отрисовки графика
     
 
-    @objc dynamic public class func drawGraph(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 200, height: 200), resizing: ResizingBehavior = .aspectFit, colorGraph: UIColor = .darkGray, colorGraphLine: UIColor = .black) {
+    @objc dynamic public class func drawGraph(frame targetFrame: CGRect = CGRect(x: 0, y: 0, width: 200, height: 200), resizing: ResizingBehavior = .aspectFit, colorGraph: UIColor = .darkGray, colorGraphLine: UIColor = .black, movePoint: CGPoint = CGPoint(x: 37.5, y: 36.5), linePoint:CGPoint = CGPoint(x: 37.5, y: 63.5)) {
         //// General Declarations
         let context = UIGraphicsGetCurrentContext()!
         
@@ -33,7 +34,7 @@ public class GraphName : NSObject {
         yPath.move(to: CGPoint(x: 18.69, y: 22.5))
         yPath.addLine(to: CGPoint(x: 18.69, y: 187.5))
         colorGraphLine.setStroke()
-        yPath.lineWidth = 2
+        yPath.lineWidth = 1
         yPath.lineCapStyle = .round
         yPath.stroke()
 
@@ -43,7 +44,7 @@ public class GraphName : NSObject {
         xPath.move(to: CGPoint(x: 7.5, y: 175.85))
         xPath.addLine(to: CGPoint(x: 180.5, y: 175.85))
         colorGraphLine.setStroke()
-        xPath.lineWidth = 2
+        xPath.lineWidth = 1
         xPath.lineCapStyle = .round
         xPath.stroke()
 
@@ -53,7 +54,7 @@ public class GraphName : NSObject {
         yCapPath.move(to: CGPoint(x: 15.64, y: 29.29))
         yCapPath.addCurve(to: CGPoint(x: 21.75, y: 29.29), controlPoint1: CGPoint(x: 18.69, y: 14.01), controlPoint2: CGPoint(x: 21.75, y: 29.29))
         colorGraphLine.setStroke()
-        yCapPath.lineWidth = 2
+        yCapPath.lineWidth = 1
         yCapPath.lineCapStyle = .round
         yCapPath.lineJoinStyle = .round
         yCapPath.stroke()
@@ -68,7 +69,7 @@ public class GraphName : NSObject {
         xCapPath.move(to: CGPoint(x: 0, y: 7.12))
         xCapPath.addCurve(to: CGPoint(x: 5.82, y: 7.12), controlPoint1: CGPoint(x: 2.91, y: -8.9), controlPoint2: CGPoint(x: 5.82, y: 7.12))
         colorGraphLine.setStroke()
-        xCapPath.lineWidth = 2
+        xCapPath.lineWidth = 1
         xCapPath.lineCapStyle = .round
         xCapPath.lineJoinStyle = .round
         xCapPath.stroke()
@@ -79,25 +80,39 @@ public class GraphName : NSObject {
 
 
         //// Bezier 3 Drawing
-        let bezier3Path = UIBezierPath()
-        bezier3Path.move(to: CGPoint(x: 20.5, y: 174.5))
-        bezier3Path.addCurve(to: CGPoint(x: 41.5, y: 65.5), controlPoint1: CGPoint(x: 20.5, y: 174.5), controlPoint2: CGPoint(x: 30.5, y: 22.5))
-        bezier3Path.addCurve(to: CGPoint(x: 55.5, y: 120.5), controlPoint1: CGPoint(x: 52.5, y: 108.5), controlPoint2: CGPoint(x: 55.5, y: 120.5))
-        bezier3Path.addCurve(to: CGPoint(x: 68.5, y: 151.5), controlPoint1: CGPoint(x: 55.5, y: 120.5), controlPoint2: CGPoint(x: 63.5, y: 154.5))
-        bezier3Path.move(to: CGPoint(x: 68.5, y: 151.5))
-        bezier3Path.addCurve(to: CGPoint(x: 81.5, y: 127.5), controlPoint1: CGPoint(x: 68.5, y: 151.5), controlPoint2: CGPoint(x: 77.5, y: 147.5))
-        bezier3Path.addCurve(to: CGPoint(x: 93.5, y: 80.5), controlPoint1: CGPoint(x: 85.5, y: 107.5), controlPoint2: CGPoint(x: 85.5, y: 62.5))
-        bezier3Path.addCurve(to: CGPoint(x: 108.5, y: 131.5), controlPoint1: CGPoint(x: 101.5, y: 98.5), controlPoint2: CGPoint(x: 100.5, y: 108.5))
-        bezier3Path.addCurve(to: CGPoint(x: 119.5, y: 154.5), controlPoint1: CGPoint(x: 116.5, y: 154.5), controlPoint2: CGPoint(x: 112.5, y: 157.5))
-        bezier3Path.addCurve(to: CGPoint(x: 131.5, y: 148.5), controlPoint1: CGPoint(x: 126.5, y: 151.5), controlPoint2: CGPoint(x: 131.5, y: 204.5))
-        bezier3Path.addCurve(to: CGPoint(x: 136.5, y: 66.5), controlPoint1: CGPoint(x: 131.5, y: 92.5), controlPoint2: CGPoint(x: 131.5, y: 58.5))
-        bezier3Path.addCurve(to: CGPoint(x: 148.5, y: 127.5), controlPoint1: CGPoint(x: 141.5, y: 74.5), controlPoint2: CGPoint(x: 142.5, y: 88.5))
-        bezier3Path.addCurve(to: CGPoint(x: 165.5, y: 166.5), controlPoint1: CGPoint(x: 152.34, y: 152.43), controlPoint2: CGPoint(x: 158.41, y: 161.18))
-        bezier3Path.addCurve(to: CGPoint(x: 179.5, y: 131.5), controlPoint1: CGPoint(x: 169.5, y: 169.5), controlPoint2: CGPoint(x: 171.93, y: 152.42))
-        colorGraph.setStroke()
-        bezier3Path.lineWidth = 3
-        bezier3Path.lineCapStyle = .round
-        bezier3Path.stroke()
+        //Рисуем плавный график
+//          let bezier3Path = UIBezierPath()
+//        bezier3Path.move(to: CGPoint(x: 20.5, y: 174.5))
+//        bezier3Path.addCurve(to: CGPoint(x: 41.5, y: 65.5), controlPoint1: CGPoint(x: 20.5, y: 174.5), controlPoint2: CGPoint(x: 30.5, y: 22.5))
+//        bezier3Path.addCurve(to: CGPoint(x: 55.5, y: 120.5), controlPoint1: CGPoint(x: 52.5, y: 108.5), controlPoint2: CGPoint(x: 55.5, y: 120.5))
+//        bezier3Path.addCurve(to: CGPoint(x: 68.5, y: 151.5), controlPoint1: CGPoint(x: 55.5, y: 120.5), controlPoint2: CGPoint(x: 63.5, y: 154.5))
+//        bezier3Path.move(to: CGPoint(x: 68.5, y: 151.5))
+//        bezier3Path.addCurve(to: CGPoint(x: 81.5, y: 127.5), controlPoint1: CGPoint(x: 68.5, y: 151.5), controlPoint2: CGPoint(x: 77.5, y: 147.5))
+//        bezier3Path.addCurve(to: CGPoint(x: 93.5, y: 80.5), controlPoint1: CGPoint(x: 85.5, y: 107.5), controlPoint2: CGPoint(x: 85.5, y: 62.5))
+//        bezier3Path.addCurve(to: CGPoint(x: 108.5, y: 131.5), controlPoint1: CGPoint(x: 101.5, y: 98.5), controlPoint2: CGPoint(x: 100.5, y: 108.5))
+//        bezier3Path.addCurve(to: CGPoint(x: 119.5, y: 154.5), controlPoint1: CGPoint(x: 116.5, y: 154.5), controlPoint2: CGPoint(x: 112.5, y: 157.5))
+//        bezier3Path.addCurve(to: CGPoint(x: 131.5, y: 148.5), controlPoint1: CGPoint(x: 126.5, y: 151.5), controlPoint2: CGPoint(x: 131.5, y: 204.5))
+//        bezier3Path.addCurve(to: CGPoint(x: 136.5, y: 66.5), controlPoint1: CGPoint(x: 131.5, y: 92.5), controlPoint2: CGPoint(x: 131.5, y: 58.5))
+//        bezier3Path.addCurve(to: CGPoint(x: 148.5, y: 127.5), controlPoint1: CGPoint(x: 141.5, y: 74.5), controlPoint2: CGPoint(x: 142.5, y: 88.5))
+//        bezier3Path.addCurve(to: CGPoint(x: 165.5, y: 166.5), controlPoint1: CGPoint(x: 152.34, y: 152.43), controlPoint2: CGPoint(x: 158.41, y: 161.18))
+//        bezier3Path.addCurve(to: CGPoint(x: 179.5, y: 131.5), controlPoint1: CGPoint(x: 169.5, y: 169.5), controlPoint2: CGPoint(x: 171.93, y: 152.42))
+//        colorGraph.setStroke()
+//        bezier3Path.lineWidth = 3
+//        bezier3Path.lineCapStyle = .round
+//        bezier3Path.stroke()
+        
+        //// Bezier Drawing
+        //х - точка старта отрисовки прямой линии вниз
+        //movePoint, linePoint
+        let bezierPath = UIBezierPath()
+        bezierPath.move(to: movePoint)//CGPoint(x: 37.5, y: 36.5))
+        bezierPath.addLine(to: linePoint)//CGPoint(x: 37.5, y: 63.5))
+        UIColor.black.setStroke()
+        bezierPath.lineWidth = 1
+        bezierPath.lineCapStyle = .round
+        bezierPath.lineJoinStyle = .round
+        bezierPath.stroke()
+
         
         context.restoreGState()
 
