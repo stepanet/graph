@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var graphView: GraphView!
+    @IBOutlet weak var mainView: UIView!
     var timerDraw: Timer?
     var arrayPointY:[Double] = []
     
@@ -24,17 +25,19 @@ class ViewController: UIViewController {
     
     
     func drawGraphTime() {
-        timerDraw = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(addArrayValue), userInfo: nil, repeats: true)
+        timerDraw = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(addArrayValue), userInfo: nil, repeats: true)
     }
     
     
     //добавим случайное число в массив и отрисуем график
     @objc func addArrayValue() {
         var addPoint:Double = 0
-        addPoint = Double.random(in: 20...150)
+        
+        addPoint = Double.random(in: 70...100)
         arrayPointY.append(addPoint)
-        if arrayPointY.count == 10 { timerDraw?.invalidate() }
-        drawGraph(colorGraph: .red, colorGraphLine: .black, pointYArray: arrayPointY)
+                
+        if arrayPointY.count == 25 { timerDraw?.invalidate() }
+        drawGraph(colorGraph: UIColor(red: 0.251, green: 0.782, blue: 0.412, alpha: 1.000), colorGraphLine: .black, pointYArray: arrayPointY)
     }
     
     
@@ -56,9 +59,10 @@ class ViewController: UIViewController {
     }
     
     func setupView() {
+        mainView.backgroundColor = .white
         graphView.layer.cornerRadius = 15
         graphView.clipsToBounds = true
-        graphView.backgroundColor = .lightGray
+        graphView.backgroundColor = .white
     }
 
 

@@ -16,23 +16,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="bAe-n1-Rhg" customClass="GraphView" customModule="graph" customModuleProvider="target">
-                                <rect key="frame" x="107" y="353" width="200" height="200"/>
+                                <rect key="frame" x="10" y="353" width="394" height="200"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="0A3-tV-I0x"/>
-                                    <constraint firstAttribute="height" constant="200" id="0M3-OL-8fY"/>
+                                    <constraint firstAttribute="height" constant="200" id="5DC-aM-ahz"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="bAe-n1-Rhg" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="bM0-Do-ye1"/>
-                            <constraint firstItem="bAe-n1-Rhg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="fkK-pN-fCP"/>
+                            <constraint firstItem="bAe-n1-Rhg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="1cN-yQ-Onq"/>
+                            <constraint firstItem="bAe-n1-Rhg" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="34f-ez-DWp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bAe-n1-Rhg" secondAttribute="trailing" constant="10" id="ug7-9p-CEO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="graphView" destination="bAe-n1-Rhg" id="hkd-x4-AfF"/>
+                        <outlet property="mainView" destination="8bC-Xf-vdC" id="mHD-Ig-h5Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

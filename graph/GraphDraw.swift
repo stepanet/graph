@@ -42,7 +42,7 @@ public class GraphName : NSObject {
         //// X Drawing
         let xPath = UIBezierPath()
         xPath.move(to: CGPoint(x: 7.5, y: 175.85))
-        xPath.addLine(to: CGPoint(x: 180.5, y: 175.85))
+        xPath.addLine(to: CGPoint(x: 300.0, y: 175.85))
         colorGraphLine.setStroke()
         xPath.lineWidth = 1
         xPath.lineCapStyle = .round
@@ -62,7 +62,7 @@ public class GraphName : NSObject {
 
         //// X cap Drawing
         context.saveGState()
-        context.translateBy(x: 180.5, y: 172.94)
+        context.translateBy(x: 300, y: 172.94)
         context.rotate(by: 90 * CGFloat.pi/180)
 
         let xCapPath = UIBezierPath()
@@ -86,30 +86,43 @@ public class GraphName : NSObject {
         
         //// Bezier Drawing
         let bezierPath = UIBezierPath()
+        let bezier2Path = UIBezierPath()
+ 
+        var pointX: Double = 30.0  //стартовая точка по х
+        let move: Double = 5      //длина указателя на графике
+        let lineMove: Double = 30  //длина тонкой линии
         
-        var pointX: Double = 25.0
-        let move: Double = 15
-        
-        let pointYArray: [Double] = pointYArray//[27,39,50,55,40,50,60,70,50,20]
+        let pointYArray: [Double] = pointYArray
         
         for pointY in pointYArray {
 
-            print(pointX, pointY)
+           print(pointY)
+            
             bezierPath.move(to: CGPoint(x: pointX, y: pointY))
             bezierPath.addLine(to: CGPoint(x: pointX, y: pointY + move))
+            
+            bezier2Path.move(to: CGPoint(x: pointX, y: pointY - lineMove))
+            bezier2Path.addLine(to: CGPoint(x: pointX, y: pointY + lineMove))
+
             pointX = pointX + 10
+            
+            //context.setShadow(offset: shadow.shadowOffset, blur: shadow.shadowBlurRadius, color: (shadow.shadowColor as! UIColor).cgColor)
+           
+            colorGraph.setStroke()
+            bezier2Path.lineWidth = 0.5
+            bezier2Path.lineCapStyle = .round
+            bezier2Path.lineJoinStyle = .round
+            bezier2Path.stroke()
+            
+            bezierPath.lineWidth = 5
+            bezierPath.lineCapStyle = .round
+            bezierPath.lineJoinStyle = .round
+            bezierPath.stroke()
+            context.saveGState()
+            context.restoreGState()
 
         }
         
-        //context.setShadow(offset: shadow.shadowOffset, blur: shadow.shadowBlurRadius, color: (shadow.shadowColor as! UIColor).cgColor)
-        colorGraph.setStroke()
-        bezierPath.lineWidth = 2.5
-        bezierPath.lineCapStyle = .round
-        bezierPath.lineJoinStyle = .round
-        context.saveGState()
-        //context.setLineDash(phase: 0, lengths: [18, 17])
-        bezierPath.stroke()
-        context.restoreGState()
 
     }
 
