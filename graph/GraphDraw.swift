@@ -85,11 +85,10 @@ public class GraphName : NSObject {
 
         
         //// Bezier Drawing
-        print("draw bezier")
         let bezierPath = UIBezierPath()
         
-        var pointX: Double = 37.0
-        let move: Double = 20
+        var pointX: Double = 25.0
+        let move: Double = 15
         
         let pointYArray: [Double] = pointYArray//[27,39,50,55,40,50,60,70,50,20]
         

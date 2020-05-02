@@ -28,10 +28,12 @@ class ViewController: UIViewController {
     }
     
     
+    //добавим случайное число в массив и отрисуем график
     @objc func addArrayValue() {
         var addPoint:Double = 0
         addPoint = Double.random(in: 20...150)
         arrayPointY.append(addPoint)
+        if arrayPointY.count == 10 { timerDraw?.invalidate() }
         drawGraph(colorGraph: .red, colorGraphLine: .black, pointYArray: arrayPointY)
     }
     
@@ -56,7 +58,7 @@ class ViewController: UIViewController {
     func setupView() {
         graphView.layer.cornerRadius = 15
         graphView.clipsToBounds = true
-        graphView.backgroundColor = .white
+        graphView.backgroundColor = .lightGray
     }
 
 
